@@ -11,7 +11,7 @@ const app = [
     path: "/",
     name: "Default",
     title: '默认页面',
-    component: () => import("../../views/Default.vue"),
+    component: () => import("../../views/Default"),
   },
 ]
 
