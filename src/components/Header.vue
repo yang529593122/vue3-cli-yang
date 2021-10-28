@@ -2,27 +2,31 @@
   <div class="header">
     <div class="left"></div>
     <div class="right">
-      <div class="userimg"><img src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" alt=""></div>
-      <div class="user-menu">
-        <span>管理员</span>
-        <span @click="loginOut">退出</span>
-      </div>
+      <el-space>
+        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+        <el-button type="text">{{name}}</el-button>
+        <el-button type="text" @click="loginOut">退出</el-button>
+      </el-space>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent,reactive,toRefs } from "vue";
 
 export default defineComponent({
   name: "Header",
   setup() {
+    const state = reactive({
+      name:localStorage.getItem('token')
+    })
     const loginOut = () =>{
       localStorage.clear()
       sessionStorage.clear()
       window.location.href = '/login'
     }
     return {
+      ...toRefs(state),
       loginOut
     }
   }
@@ -40,28 +44,7 @@ export default defineComponent({
   justify-content: space-between;
   .right{
     display: flex;
-    line-height:60px;
-    .user-menu{
-      span{
-        padding-right: 10px;
-        &:nth-of-type(2){
-          cursor: pointer;
-        }
-      }
-    }
-    .userimg{
-      margin-top: 14px;
-      margin-right: 10px;
-      width:32px;
-      height:32px;
-      border-radius:50%;
-      overflow: hidden;
-      img{
-        display:block;
-        width:100%;
-        height:100%;
-      }
-    }
+    align-items: center;
   }
 }
 

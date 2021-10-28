@@ -40,9 +40,9 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped lang="less">
 .menu-content {
-  height: 100vh;
+  height: calc(~"100vh - 60px");
   overflow: auto;
   border: none!important;
 }

@@ -2,6 +2,9 @@
   <template v-if="isLogin">
     <el-row class="app">
       <el-col class="nomargin left-content">
+        <div class="logo">
+          XXX后台管理系统
+        </div>
         <Menus />
       </el-col>
       <el-col class="nomargin right-content">
@@ -59,8 +62,16 @@ body,
   height: 100%;
   .app {
     display: flex;
+    height:100vh;
     .left-content {
       max-width: 200px;
+      height:100vh;
+      .logo{
+        height:60px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
     .right-content {
       flex: 1;
