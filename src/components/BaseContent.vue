@@ -23,11 +23,12 @@ export default defineComponent({
   background: #f0f2f5;
   display: flex;
   flex-direction: column;
-
   .page-content {
+    flex:1;
     margin: 20px;
     padding: 16px;
     background: #fff;
+    overflow:auto;
   }
 }
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <div>
     <TableCom
       @pageChange = 'handlePageChange'
       :tableData = 'tableData'
@@ -18,7 +17,6 @@
         </el-table-column>
       </template>
     </TableCom>
-  </div>
 </template>
 
 <script>
