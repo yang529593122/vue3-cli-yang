@@ -1,18 +1,21 @@
 <template>
   <template v-if="isLogin">
-    <el-row class="app">
-      <el-col class="nomargin left-content">
-        <div class="logo">
-          XXX后台管理系统
-        </div>
-        <Menus />
-      </el-col>
-      <el-col class="nomargin right-content">
-        <BaseContent>
-          <router-view></router-view>
-        </BaseContent>
-      </el-col>
-    </el-row>
+      <el-container class="warp">
+          <el-aside width="200px" class="aside">
+              <div class="logo">XXX后台管理系统</div>
+              <Menus />
+          </el-aside>
+          <el-container>
+              <el-header class="header">
+                  <Header/>
+              </el-header>
+              <el-main>
+                  <BaseContent>
+                    <router-view></router-view>
+                  </BaseContent>
+              </el-main>
+          </el-container>
+      </el-container>
   </template>
   <template v-else>
     <Login />
@@ -26,10 +29,11 @@ import { useStore } from "vuex";
 import BaseContent from "./BaseContent";
 import Menus from "./Menus";
 import Login from "../views/Login";
+import Header from "./Header";
 
 export default defineComponent({
   name: "Layout",
-  components: { Menus, BaseContent, Login },
+  components: { Menus, BaseContent, Login,Header },
   setup() {
     const store = useStore();
     let isLogin = ref(false);
@@ -55,31 +59,20 @@ export default defineComponent({
   margin: 0;
   padding: 0;
 }
-html,
-body,
-#app {
-  width: 100%;
-  height: 100%;
-  .app {
-    display: flex;
-    height:100vh;
-    .left-content {
-      max-width: 200px;
-      height:100vh;
-      .logo{
-        height:60px;
+
+.warp{
+  height:100vh;
+    .aside{
+        background: #d3dce6;
+    }
+    .logo{
+        height: 59px;
         display:flex;
         justify-content: center;
         align-items: center;
-      }
     }
-    .right-content {
-      flex: 1;
+    .header{
+        border-bottom:1px solid #ccc;
     }
-    .nomargin {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-  }
 }
 </style>

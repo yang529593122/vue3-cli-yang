@@ -44,6 +44,6 @@ export default defineComponent({
 .menu-content {
   height: calc(~"100vh - 60px");
   overflow: auto;
-  border: none!important;
+  background: #d3dce6;
 }
 </style>

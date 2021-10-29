@@ -37,15 +37,13 @@ export default defineComponent({
 <style scoped lang="less">
 
 .header {
-  padding:0 20px;
-  height: 60px;
-  background-color: #fff;
-  display:flex;
-  justify-content: space-between;
-  .right{
-    display: flex;
-    align-items: center;
-  }
+    display:flex;
+    height: 100%;
+    justify-content: space-between;
+    .right{
+        display: flex;
+        align-items: center;
+    }
 }
 
 </style>
