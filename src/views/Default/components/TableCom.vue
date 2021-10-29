@@ -1,4 +1,5 @@
 <template>
+  <FormCom @onSubmit="onSubmit" :formData="formData" />
   <el-table :data="tableData" border>
     <el-table-column
       v-for="item in headerList"
@@ -12,6 +13,7 @@
     <div class="pagination-content">
       <el-pagination
         background
+        :current-page="current"
         layout="prev, pager, next"
         :total="1000"
         @current-change="handleCurrentChange"
@@ -21,12 +23,20 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import FormCom from "./FormCom";
 
 export default defineComponent({
   name: "Default",
-  emits: ["handleEdit", "pageChange"],
+  emits: ["handleEdit", "changData"],
+  components: { FormCom },
   props: {
+    formData: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
     tableData: {
       type: Array,
       default: () => {
@@ -41,20 +51,30 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const current = ref(1);
+    let tableFormDta = {
+        ...props.formData.data,
+    };
     const handleEdit = (index, row) => {
       emit("handleEdit", row);
     };
-    const handleDelete = (index, row) => {
-      console.log(index, row);
-    };
-
     const handleCurrentChange = (val) => {
-      emit("pageChange", val);
+      current.value = val;
+      emit("changData", {
+        ...tableFormDta,
+        page: val,
+      });
+    };
+    const onSubmit = (data) => {
+      tableFormDta = { ...data, page: 1 };
+      current.value = 1;
+      emit("changData", { ...data, page: 1 });
     };
     return {
+      current,
       handleEdit,
-      handleDelete,
       handleCurrentChange,
+      onSubmit,
     };
   },
 });
