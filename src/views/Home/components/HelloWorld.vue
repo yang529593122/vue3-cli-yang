@@ -1,14 +1,7 @@
 <template>
   <div class="hello">
-      <p>
-          <button @click="getProducts">异步axios</button>
-          {{ name }}
-      </p>
-      <p>
-          <button @click="delItem">同步</button>
-          {{ count }}
-      </p>
-
+    <p><button @click="getProducts">异步axios</button>{{ name }}</p>
+    <p><button @click="delItem">同步</button>{{ count }}</p>
   </div>
 </template>
 
@@ -20,6 +13,7 @@ export default defineComponent({
   name: "HelloWorld",
   setup() {
     const store = useStore();
+    store.dispatch("getProducts");
     return {
       name: computed(() => store.getters.name),
       count: computed(() => store.getters.count),

@@ -1,3 +1,11 @@
-import {getRequest} from "../request"
+import { postRequest } from "../request";
 
-export const getData =async () => getRequest("http://localhost:8000/list",{id:2});
+export const getData = async () =>
+  postRequest("http://erpdev.hntxrj.com/api/message/getMessageSummary", {
+    categoryType: 1,
+    compid: 25,
+    opid: "杨鹏飞",
+    opId: "杨鹏飞",
+    userId: 5476,
+    pid: 28,
+  });
